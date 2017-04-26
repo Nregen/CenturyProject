@@ -5,8 +5,59 @@ public class Menu {
 	private boolean combo;
 	private boolean toasted;
 	private String bread;
-	private String sandwichType;
-	private String toppings;
+	private String cheese;
+	private String topping;
+	private String drink;
+	private String meat;
+	private String side;
+	
+
+	public Menu(String bread, String meat, String cheese, String topping, String side, String drink) {
+		//create the default constructor for the Menu
+		super();
+		this.bread = bread;
+		this.meat = meat;
+		this.cheese = cheese;
+		this.topping = topping;
+		this.side = side;
+		this.drink = drink;		
+	}
+	
+	public String getBread() {
+		return bread;
+	}
+	public void setBread(String bread) {
+		this.bread = bread;
+	}
+	public String getMeat() {
+		return meat;
+	}
+	public void setMeat(String meat) {
+		this.meat = meat;
+	}
+	public void setCheese(String cheese) {
+		this.cheese = cheese;
+	}
+	public String getCheese() {
+		return cheese;
+	}
+
+	public void setTopping(String topping) {
+		this.topping = topping;
+	}
+	public String getToppings() {
+		return topping;
+	}
+	public String getSide() {
+		return side;
+	}
+	public void setSide(String side) {
+		this.side = side;
+	}
+	public void setDrink(String drink) {
+		this.drink = drink;
+	}
+
 	public boolean isCombo() {
 		return combo;
 	}
@@ -19,31 +70,12 @@ public class Menu {
 	public void setToasted(boolean toasted) {
 		this.toasted = toasted;
 	}
-	public String getBread() {
-		return bread;
-	}
-	public void setBread(String bread) {
-		this.bread = bread;
-	}
-	public String getSandwichType() {
-		return sandwichType;
-	}
-	public void setSandwichType(String sandwichType) {
-		this.sandwichType = sandwichType;
-	}
-	public String getToppings() {
-		return toppings;
-	}
-	public void setToppings(String toppings) {
-		this.toppings = toppings;
-	}
+
 	@Override
 	public String toString() {
-		return "sandwichType: " + sandwichType 
-				+ "\ncombo y/n: " + combo 
-				+ "\ntoasted: " + toasted 
-				+ "\nbread: " + bread 
-				+ "\ntoppings: " + toppings + "\n";
+		return "bread= " + bread + ", meat= " + meat 
+				+ ", cheese= " + cheese + ", topping= " + topping 
+				+ ", drink= " + drink + ",  side= " + side;
 	}
 	
 	

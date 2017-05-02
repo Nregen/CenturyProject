@@ -4,7 +4,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,25 +11,33 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-
+//gui class
 public class GUI extends JFrame implements ActionListener{
-	
-	private Toppings topping1 = new Toppings();
-	private Toppings topping2 = new Toppings();
-	private Toppings topping3 = new Toppings();
-	private Toppings topping4 = new Toppings();
-	private Toppings topping5 = new Toppings();
-	private Toppings topping6 = new Toppings();
-	private Sandwich sandwich = new Sandwich();
-	private Meal meal = new Meal();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1379527667830747185L;
+	//create instance of order
 	private Order order = new Order();
-	
+	//variables to send to constructors
+	private String breadType = "";
+	private String meat = "";
+	private String cheese = "";
+	private String top1 = "";
+	private String top2 = "";
+	private String top3 = "";
+	private String top4 = "";
+	private String top5 = "";
+	private String top6 = "";
+	private String side = "";
+	private String drink = "";
+	//create panels
 	private JPanel topPanel = new JPanel(new GridLayout(4,7));
 	private JPanel bottomPanel = new JPanel(new BorderLayout());
 	private JPanel addOrderPanel = new JPanel(new FlowLayout());
 	private JPanel textAreaPanel = new JPanel(new BorderLayout());
 	private JPanel submitOrderPanel = new JPanel(new FlowLayout());
-	
+	//create labels
 	private JLabel breadTypeLbl = new JLabel("Bread Type", SwingConstants.CENTER);
 	private JLabel meatLbl = new JLabel("Meat", SwingConstants.CENTER);
 	private JLabel cheeseLbl = new JLabel("Cheese", SwingConstants.CENTER);
@@ -38,9 +45,9 @@ public class GUI extends JFrame implements ActionListener{
 	private JLabel blankLbl = new JLabel("", SwingConstants.CENTER);
 	private JLabel sidesLbl = new JLabel("Sides", SwingConstants.CENTER);
 	private JLabel drinksLbl = new JLabel("Drink", SwingConstants.CENTER);
-	
+	//output textfield
 	private JTextArea outputField = new JTextArea();
-		
+	//create buttons
 	private JButton bread1Btn = new JButton("White");
 	private JButton bread2Btn = new JButton("Wheat");
 	private JButton bread3Btn = new JButton("Whole Grain");
@@ -65,9 +72,7 @@ public class GUI extends JFrame implements ActionListener{
 	private JButton addOrderBtn = new JButton("Add To Order");
 	private JButton clearBtn = new JButton("Clear");
 	private JButton submitOrderBtn = new JButton("Submit Order");
-	
-	private JButton[] bread = {bread1Btn, bread2Btn, bread3Btn};
-	
+	//gui constructor
 	public GUI(String title){
 		super(title);
 		this.setSize(1200, 800);
@@ -78,6 +83,7 @@ public class GUI extends JFrame implements ActionListener{
 		addListeners();
 		outputField.setText("Sandwich: $5.00\nSide: $1.00\nDrinks\tSm: $0.50\tMd: $1.00\tLg: $1.50\n\n");
 	}
+	//method to build panels
 	private void buildPanels(){
 		
 		topPanel.add(breadTypeLbl);
@@ -120,10 +126,12 @@ public class GUI extends JFrame implements ActionListener{
 		bottomPanel.add(textAreaPanel, BorderLayout.CENTER);
 		bottomPanel.add(submitOrderPanel, BorderLayout.SOUTH);
 	}
+	//method to add panels to frame
 	private void addPanels(){
 		this.add(topPanel);
 		this.add(bottomPanel);
 	}
+	//method to add listeners to buttons
 	private void addListeners(){
 		bread1Btn.addActionListener(this);
 		bread2Btn.addActionListener(this);
@@ -150,101 +158,134 @@ public class GUI extends JFrame implements ActionListener{
 		clearBtn.addActionListener(this);
 		submitOrderBtn.addActionListener(this);
 	}
+	//set actions for buttons
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String callingBtn = e.getActionCommand();
 		
 		if(callingBtn.equals("White")){
-			sandwich.setBreadType("White");
-			outputField.setText(sandwich.getBreadType());
+			breadType = "White";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Wheat")){
-			sandwich.setBreadType("Wheat");
-			outputField.setText(sandwich.getBreadType());
+			breadType = "Wheat";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Whole Grain")){
-			sandwich.setBreadType("Whole Grain");
-			outputField.setText(sandwich.getBreadType());
+			breadType = "Whole Grain";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Turkey")){
-			sandwich.setMeat("Turkey");
-			outputField.setText(sandwich.getMeat());
+			meat = "Turkey";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Ham")){
-			sandwich.setMeat("Ham");
-			outputField.setText(sandwich.getMeat());
+			meat = "Ham";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Bacon")){
-			sandwich.setMeat("Bacon");
-			outputField.setText(sandwich.getMeat());
+			meat = "Bacon";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Cheddar")){
-			sandwich.setCheese("Cheddar");
-			outputField.setText(sandwich.getCheese());
+			cheese = "Cheddar";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Swiss")){
-			sandwich.setCheese("Swiss");
-			outputField.setText(sandwich.getCheese());
+			cheese = "Swiss";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Pepper Jack")){
-			sandwich.setCheese("Pepper Jack");
-			outputField.setText(sandwich.getCheese());
+			cheese = "Pepper Jack";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Lettuce")){
-			topping1.setToppings("Lettuce");
-			sandwich.addToppings(topping1);
-			outputField.setText(topping1.getToppings());
+			top1 = "Lettuce";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Tomato")){
-			topping2.setToppings("Tomato");
-			sandwich.addToppings(topping2);
-			outputField.setText(topping2.getToppings());
+			top2 = "Tomato";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Onion")){
-			topping3.setToppings("Onion");
-			sandwich.addToppings(topping3);
-			outputField.setText(topping3.getToppings());
+			top3 = "Onion";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Peppers")){
-			topping4.setToppings("Peppers");
-			sandwich.addToppings(topping4);
-			outputField.setText(topping4.getToppings());
+			top4 = "Peppers";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Mayo")){
-			topping5.setToppings("Mayo");
-			sandwich.addToppings(topping5);
-			outputField.setText(topping5.getToppings());
+			top5 = "Mayo";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Mustard")){
-			topping6.setToppings("Mustard");
-			sandwich.addToppings(topping6);
-			outputField.setText(topping6.getToppings());
+			top6 = "Mustard";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Chips")){
-			meal.setSide("Chips");
-			outputField.setText(meal.getSide());
+			side = "Chips";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Cookie")){
-			meal.setSide("Cookie");
-			outputField.setText(meal.getSide());
+			side = "Cookie";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Pickle")){
-			meal.setSide("Pickle");
-			outputField.setText(meal.getSide());
+			side = "Pickle";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Small")){
-			meal.setDrink("Sm Drink");
-			outputField.setText(meal.getDrink());
+			drink = "Sm Drink";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Medium")){
-			meal.setDrink("Md Drink");
-			outputField.setText(meal.getDrink());
+			drink = "Md Drink";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Large")){
-			meal.setDrink("Lg Drink");
-			outputField.setText(meal.getDrink());
+			drink = "Lg Drink";
+			outputField.setText(breadType + "\t" + meat + "\t" + cheese + "\t" + top1 + "\t" + top2 + "\t" + top3 + "\t" + top4 + "\t" + top5 + "\t" + top6 
+					+ "\n" + side + "\n" + drink + "\n");
 		}else if(callingBtn.equals("Add To Order")){
+			Toppings toppings = new Toppings(top1, top2, top3, top4, top5, top6);
+			Sandwich sandwich = new Sandwich(breadType, meat, cheese, toppings);
+			Meal meal = new Meal(sandwich, side, drink);
+			sandwich.addToppings(toppings);
 			meal.addSandwich(sandwich);
 			order.addOrder(meal);
-			outputField.setText(order.displayOrder());
+			outputField.setText(order.toString());
+			breadType = "";
+			meat = "";
+			cheese = "";
+			top1 = "";
+			top2 = "";
+			top3 = "";
+			top4 = "";
+			top5 = "";
+			top6 = "";
+			side = "";
+			drink = "";
 		}else if(callingBtn.equals("Clear")){
-			topping1.setToppings("");
-			topping2.setToppings("");
-			topping3.setToppings("");
-			topping4.setToppings("");
-			topping5.setToppings("");
-			topping6.setToppings("");
-			sandwich.setBreadType("");
-			sandwich.setMeat("");
-			sandwich.setCheese("");
-			meal.setSide("");
-			meal.setDrink("");
+			breadType = "";
+			meat = "";
+			cheese = "";
+			top1 = "";
+			top2 = "";
+			top3 = "";
+			top4 = "";
+			top5 = "";
+			top6 = "";
+			side = "";
+			drink = "";
 			order.removeOrder();
 			outputField.setText("Sandwich: $5.00\nSide: $1.00\nDrinks\tSm: $0.50\tMd: $1.00\tLg: $1.50\n\n");
 		}else if(callingBtn.equals("Submit Order")){
-			
+			outputField.setText(order.toString());
+			outputField.append("\n" + order.displayPrice());
 		}
 	}
+	//main method to start gui
 	public static void main(String[] args){
 		GUI gui = new GUI("Sandwich Shop");
 		gui.setVisible(true);
